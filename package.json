@@ -1,8 +1,8 @@
 {
-  "name": "svelma",
+  "name": "@wagich/svelma",
   "svelte": "src/index.js",
   "description": "Bulma components for Svelte",
-  "version": "0.4.5",
+  "version": "0.4.6-custom001",
   "author": "Abby Chau, Brian Hann",
   "license": "MIT",
   "keywords": [
@@ -13,12 +13,15 @@
     "component",
     "components"
   ],
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/c0bra/svelma.git"
+    "url": "git+https://github.com/@wagich/svelma.git"
   },
   "bugs": {
-    "url": "https://github.com/c0bra/svelma/issues"
+    "url": "https://github.com/@wagich/svelma/issues"
   },
   "module": "dist/module.js",
   "main": "dist/index.js",
