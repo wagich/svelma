@@ -4,8 +4,8 @@ import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import svelte from 'rollup-plugin-svelte'
 import { terser } from 'rollup-plugin-terser'
-import pkg from './package.json'
 import css from 'rollup-plugin-css-only'
+import autoprefixer from 'autoprefixer'
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -29,7 +29,7 @@ export default {
       },
       preprocess: autoPreprocess({
         postcss: {
-          plugins: [require('autoprefixer')()],
+          plugins: [autoprefixer()],
         },
       })
     }),
