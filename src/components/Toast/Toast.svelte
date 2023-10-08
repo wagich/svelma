@@ -3,6 +3,8 @@
   import { fly, fade } from 'svelte/transition'
   import Notice, { filterProps } from '../Notice.svelte'
 
+  let notice;
+
   /** Text or html message for toast
    * @svelte-prop {String} message
    * */
@@ -33,6 +35,10 @@
    * */
   export let background = ''
 
+  export function close() {
+    notice.close();
+  }
+
   $: newBackground = background || type.replace(/^is-(.*)/, 'has-background-$1')
 </script>
 
@@ -47,7 +53,7 @@
   }
 </style>
 
-<Notice {...filterProps($$props)}>
+<Notice {...filterProps($$props)} bind:this={notice}>
   <div class="toast {type} {newBackground}" role="alert">
     <div class="text"> <!-- NOTE: this extra div is for dynamic text styling with background-clip -->
       {@html message}
