@@ -41,7 +41,7 @@
 </script>
 
 <style lang="scss">
-@import 'node_modules/bulma/sass/utilities/all';
+@import 'bulma/sass/utilities/all';
 
 .switch {
   position: relative;
@@ -49,7 +49,7 @@
   user-select: none;
   display: inline-flex;
 
-  :global(&[disabled]) {
+  &[disabled] {
     opacity: .5;
     cursor: not-allowed;
   }

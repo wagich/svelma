@@ -170,7 +170,7 @@
       on:focus={onFocus}
       on:blur={onBlur}
       on:change
-      {disabled} />
+      {disabled}></textarea>
   {/if}
 
   {#if icon}

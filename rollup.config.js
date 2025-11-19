@@ -1,9 +1,9 @@
-import autoPreprocess from 'svelte-preprocess'
+import { sveltePreprocess } from 'svelte-preprocess'
 import bundleSize from 'rollup-plugin-bundle-size'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import svelte from 'rollup-plugin-svelte'
-import { terser } from 'rollup-plugin-terser'
+import terser from '@rollup/plugin-terser'
 import css from 'rollup-plugin-css-only'
 import autoprefixer from 'autoprefixer'
 
@@ -24,10 +24,9 @@ export default {
     svelte({
       // enable run-time checks when not in production
 			compilerOptions: {
-				hydratable: true,
 				dev: !production,
       },
-      preprocess: autoPreprocess({
+      preprocess: sveltePreprocess({
         postcss: {
           plugins: [autoprefixer()],
         },

@@ -51,5 +51,5 @@
 </script>
 
 <span class="icon {size} {newType} {(isLeft && 'is-left') || ''} {(isRight && 'is-right') || ''}" class:is-clickable={isClickable} on:click>
-  <i class="{newPack} fa-{icon} {customClass} {newCustomSize}" />
+  <i class="{newPack} fa-{icon} {customClass} {newCustomSize}"></i>
 </span>
