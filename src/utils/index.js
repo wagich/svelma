@@ -1,5 +1,4 @@
 import * as transitions from 'svelte/transition'
-import { bubble, listen } from "svelte/internal";
 
 export function chooseAnimation(animation) {
   return typeof animation === 'function' ? animation : transitions[animation]
@@ -37,19 +36,4 @@ export function typeToIcon(type) {
     default:
       return null
   }
-}
-
-export function getEventsAction(component) {
-  return node => {
-    const events = Object.keys(component.$$.callbacks);
-    const listeners = [];
-    events.forEach(event =>
-      listeners.push(listen(node, event, e => bubble(component, e)))
-    );
-    return {
-      destroy: () => {
-        listeners.forEach(listener => listener());
-      }
-    };
-  };
 }
