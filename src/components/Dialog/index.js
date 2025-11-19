@@ -1,17 +1,17 @@
+import { mount, unmount } from 'svelte';
 import Dialog from './Dialog.svelte'
 
 function createDialog(props) {
   if (typeof props === 'string') props = { message: props }
 
-  const dialog = new Dialog({
+  const dialog = mount(Dialog, {
     target: document.body,
     props,
     intro: true,
+    events: {
+      destroy: () => unmount(dialog),
+    }
   });
-
-  dialog.$on('destroy', () => {
-    dialog.$destroy()
-  })
 
   return dialog.promise
 }

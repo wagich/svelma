@@ -13,7 +13,7 @@
 </script>
 
 <script>
-  import { createEventDispatcher, onDestroy, onMount, tick } from 'svelte'
+  import { createEventDispatcher, onDestroy, onMount, tick, mount } from 'svelte'
   import { fly, fade } from 'svelte/transition'
   import Notices, { notices } from './Notices.svelte'
 
@@ -47,7 +47,7 @@
     await tick
 
     if (!notices.top) {
-      notices.top = new Notices({
+      notices.top = mount(Notices, {
         target: document.body,
         props: {
           position: 'top'
@@ -56,7 +56,7 @@
     }
 
     if (!notices.bottom) {
-      notices.bottom = new Notices({
+      notices.bottom = mount(Notices, {
         target: document.body,
         props: {
           position: 'bottom',

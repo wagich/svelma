@@ -1,3 +1,4 @@
+import { mount, unmount } from 'svelte';
 import Modal from './Modal.svelte'
 import ModalCard from './ModalCard.svelte'
 
@@ -8,13 +9,13 @@ export default Modal
 export { ModalCard }
 
 export function open(props) {
-  const modal = new Modal({
+  const modal = mount(Modal, {
     target: document.body,
     props,
     intro: true
   });
 
-  modal.close = () => modal.$destroy();
+  modal.close = () => unmount(modal);
 
   return modal;
 }

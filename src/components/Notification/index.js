@@ -1,3 +1,4 @@
+import { mount, unmount } from 'svelte';
 import Notification from './Notification.svelte'
 import NotificationNotice from './NotificationNotice.svelte'
 
@@ -8,13 +9,14 @@ export default Notification
 export function create(props) {
   if (typeof props === 'string') props = { message: props }
 
-  const notification = new NotificationNotice({
+  const notification = mount(NotificationNotice, {
     target: document.body,
     props,
     intro: true,
+    events: {
+      destroyed: () => unmount(notification),
+    }
   })
-
-  notification.$on('destroyed', notification.$destroy)
 
   return notification
 }
