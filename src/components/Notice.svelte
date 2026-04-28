@@ -24,6 +24,13 @@
   export let duration = 2000
   export let transitionOut = true
 
+  /** Callback invoked once the notice has finished animating out and
+   * is ready to be unmounted. Programmatic helpers use this to call
+   * `unmount()`. (The legacy `destroyed` component event is still
+   * dispatched for any consumers using `<Notice on:destroyed>`.)
+   * */
+  export let ondestroyed = null
+
   let el
   let parent
   let timer
@@ -41,6 +48,7 @@
     active = false
 
     dispatch('destroyed')
+    ondestroyed?.()
   }
 
   async function setupContainers() {

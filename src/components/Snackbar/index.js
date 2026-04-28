@@ -8,13 +8,17 @@ export default Snackbar
 export function create(props) {
   if (typeof props === 'string') props = { message: props }
 
+  let unmounted = false
+  const teardown = () => {
+    if (unmounted) return
+    unmounted = true
+    unmount(snackbar)
+  }
+
   const snackbar = mount(Snackbar, {
     target: document.body,
-    props,
+    props: { ...props, ondestroyed: teardown },
     intro: true,
-    events: {
-      destroyed: () => unmount(snackbar),
-    }
   });
 
   return snackbar;

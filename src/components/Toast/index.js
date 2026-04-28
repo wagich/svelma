@@ -8,13 +8,17 @@ export default Toast
 export function create(props) {
   if (typeof props === 'string') props = { message: props }
 
+  let unmounted = false
+  const teardown = () => {
+    if (unmounted) return
+    unmounted = true
+    unmount(toast)
+  }
+
   const toast = mount(Toast, {
     target: document.body,
-    props,
+    props: { ...props, ondestroyed: teardown },
     intro: true,
-    events: {
-      destroyed: () => unmount(toast),
-    }
   });
 
   return toast;

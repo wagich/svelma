@@ -35,6 +35,9 @@
 
   export let onAction = () => {}
 
+  /** @svelte-prop {Function} [ondestroyed] */
+  export let ondestroyed = null
+
   let notice
 
   function action() {
@@ -48,7 +51,7 @@
 
   // $: newBackground = background
   $: newType = type && type.replace(/^is-(.*)/, 'has-text-$1')
-  $: props = { ...filterProps($$props), position, duration }
+  $: props = { ...filterProps($$props), position, duration, ondestroyed }
 </script>
 
 <style lang="scss">

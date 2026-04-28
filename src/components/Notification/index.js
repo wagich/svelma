@@ -9,13 +9,20 @@ export default Notification
 export function create(props) {
   if (typeof props === 'string') props = { message: props }
 
+  let unmounted = false
+  const teardown = () => {
+    if (unmounted) return
+    unmounted = true
+    unmount(notification)
+  }
+
   const notification = mount(NotificationNotice, {
     target: document.body,
-    props,
+    // `ondestroyed` is a callback prop forwarded to the inner <Notice>;
+    // Svelte 5's `events:` option only catches DOM events, not
+    // createEventDispatcher events, so a prop is required for cleanup.
+    props: { ...props, ondestroyed: teardown },
     intro: true,
-    events: {
-      destroyed: () => unmount(notification),
-    }
   })
 
   return notification

@@ -35,6 +35,9 @@
    * */
   export let background = ''
 
+  /** @svelte-prop {Function} [ondestroyed] */
+  export let ondestroyed = null
+
   export function close() {
     notice.close();
   }
@@ -53,7 +56,7 @@
   }
 </style>
 
-<Notice {...filterProps($$props)} bind:this={notice}>
+<Notice {...filterProps($$props)} {ondestroyed} bind:this={notice}>
   <div class="toast {type} {newBackground}" role="alert">
     <div class="text"> <!-- NOTE: this extra div is for dynamic text styling with background-clip -->
       {@html message}

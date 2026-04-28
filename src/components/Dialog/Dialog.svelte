@@ -82,6 +82,12 @@
    * */
   export let inputProps = {}
 
+  /** Callback invoked when the dialog should be torn down. Used by the
+   * programmatic helpers (`Dialog.alert/confirm/prompt`) to call `unmount()`.
+   * @svelte-prop {Function} [ondestroy]
+   * */
+  export let ondestroy = null
+
   // export let showClose = true
   let resolve
   export let promise = new Promise((fulfil) => (resolve = fulfil))
@@ -129,6 +135,7 @@
     resolve(hasInput ? null : false)
     active = false
     dispatch('destroy')
+    ondestroy?.()
   }
 
   async function confirm() {

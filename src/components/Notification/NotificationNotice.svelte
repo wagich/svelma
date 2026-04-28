@@ -8,13 +8,16 @@
   export let duration = 2000
   export let position = 'is-top-right'
 
-  $: props = { ...filterProps($$props), duration, position }
+  /** @svelte-prop {Function} [ondestroyed] */
+  export let ondestroyed = null
+
+  $: props = { ...filterProps($$props), duration, position, ondestroyed }
   $: notificationProps = { ...removeNonNoficationProps($$props) }
 
   function removeNonNoficationProps(props) {
     const newProps = {}
 
-    const blacklist = ['duration', 'message', 'position']
+    const blacklist = ['duration', 'message', 'position', 'ondestroyed']
 
     Object.keys(props).forEach(key => {
       if (!blacklist.includes(key)) newProps[key] = props[key]
