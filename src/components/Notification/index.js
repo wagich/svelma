@@ -1,6 +1,7 @@
 import { mount, unmount } from 'svelte';
 import Notification from './Notification.svelte'
 import NotificationNotice from './NotificationNotice.svelte'
+import { getNoticesContainer } from '../Notices'
 
 Notification.create = create
 
@@ -16,12 +17,17 @@ export function create(props) {
     unmount(notification)
   }
 
+  const position = props.position ?? 'is-top-right'
+  const target = getNoticesContainer(position)
+  // Mount before the existing first child so the newest notice is at
+  // the start of the DOM (matching the previous `insertAdjacentElement`
+  // 'afterbegin' behavior the column / column-reverse layout relies on).
+  const anchor = target.firstChild || undefined
+
   const notification = mount(NotificationNotice, {
-    target: document.body,
-    // `ondestroyed` is a callback prop forwarded to the inner <Notice>;
-    // Svelte 5's `events:` option only catches DOM events, not
-    // createEventDispatcher events, so a prop is required for cleanup.
-    props: { ...props, ondestroyed: teardown },
+    target,
+    anchor,
+    props: { ...props, position, ondestroyed: teardown },
     intro: true,
   })
 

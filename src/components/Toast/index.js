@@ -1,5 +1,6 @@
 import { mount, unmount } from 'svelte';
 import Toast from './Toast.svelte'
+import { getNoticesContainer } from '../Notices'
 
 Toast.create = create
 
@@ -15,9 +16,14 @@ export function create(props) {
     unmount(toast)
   }
 
+  const position = props.position ?? 'is-top'
+  const target = getNoticesContainer(position)
+  const anchor = target.firstChild || undefined
+
   const toast = mount(Toast, {
-    target: document.body,
-    props: { ...props, ondestroyed: teardown },
+    target,
+    anchor,
+    props: { ...props, position, ondestroyed: teardown },
     intro: true,
   });
 

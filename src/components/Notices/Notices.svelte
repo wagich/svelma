@@ -1,24 +1,22 @@
 <script context="module">
   // Kept as an empty placeholder for backwards compatibility with any
   // external consumer that may have imported it. Internal code now uses
-  // `getNoticesContainer` from `./notices.js`.
+  // `getNoticesContainer` from `./index.js`.
   export const notices = {}
 </script>
 
 <script>
   export let position = 'top'
 
+  /** Callback invoked once the container element has been bound. Used
+   * by `getNoticesContainer` to obtain the DOM node to mount notices
+   * into without depending on Svelte 5's mount() return-value shape. */
+  export let oncontainer = null
+
   let container
   let positionClass
   $: positionClass = position === 'top' ? 'is-top' : 'is-bottom'
-
-  /**
-   * Returns the DOM element used as the notices container so that
-   * programmatic helpers can mount notice components directly into it.
-   */
-  export function getContainer() {
-    return container
-  }
+  $: if (container) oncontainer?.(container)
 </script>
 
 <style lang="scss">

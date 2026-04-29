@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher, onDestroy, onMount } from 'svelte'
   import { fly, fade } from 'svelte/transition'
-  import Notice, { filterProps } from '../Notice.svelte'
+  import { Notice, filterProps } from '../Notices'
 
   let notice;
 

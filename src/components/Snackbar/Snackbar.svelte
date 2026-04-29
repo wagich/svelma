@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher, onDestroy, onMount } from 'svelte'
   import { fly, fade } from 'svelte/transition'
-  import Notice, { filterProps } from '../Notice.svelte'
+  import { Notice, filterProps } from '../Notices'
 
   /** Text or html message for snackbar
    * @svelte-prop {String} message

@@ -2,7 +2,7 @@
   "name": "@wagich/svelma",
   "svelte": "src/index.js",
   "description": "Bulma components for Svelte",
-  "version": "0.6.0",
+  "version": "0.7.1",
   "author": "Abby Chau, Brian Hann",
   "license": "MIT",
   "type": "module",
@@ -70,7 +70,7 @@
     "semantic-release": "semantic-release"
   },
   "browserslist": "last 2 versions",
-  "homepage": "https://github.com/c0bra/svelma#readme",
+  "homepage": "https://github.com/wagich/svelma#readme",
   "directories": {
     "doc": "docs"
   }

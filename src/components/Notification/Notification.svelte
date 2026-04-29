@@ -2,7 +2,7 @@
   import { createEventDispatcher, onDestroy, onMount } from 'svelte'
   import { fly, fade } from 'svelte/transition'
   import Icon from '../Icon.svelte'
-  import Notice, { filterProps } from '../Notice.svelte'
+  import { Notice, filterProps } from '../Notices'
   import { typeToIcon } from '../../utils'
 
   /** Type (color)
